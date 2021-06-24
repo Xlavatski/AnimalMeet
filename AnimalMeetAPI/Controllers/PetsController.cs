@@ -85,7 +85,7 @@ namespace AnimalMeetAPI.Controllers
         [ProducesResponseType(200, Type = typeof(PetsDto))]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
-        public IActionResult GetPetsInUser(string userId)
+        public IActionResult GetPetsInUser(int userId)
         {
             var objList = _petsRepo.GetPetsInUser(userId);
             if (objList == null)

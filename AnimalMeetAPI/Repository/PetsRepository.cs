@@ -45,7 +45,7 @@ namespace AnimalMeetAPI.Repository
             return _db.Pets.Include(c => c.AnimalSubtype).Where(c => c.AnimalSubtypeId == animSubTypeId).ToList();
         }
 
-        public ICollection<Pets> GetPetsInUser(string userId)
+        public ICollection<Pets> GetPetsInUser(int userId)
         {
             return _db.Pets.Include(c => c.User).Where(c => c.UserId == userId).ToList();
         }

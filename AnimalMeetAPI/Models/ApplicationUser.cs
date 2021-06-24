@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetAPI.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser 
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -18,9 +20,9 @@ namespace AnimalMeetAPI.Models
 
         [ForeignKey("CityId")]
         public City City { get; set; }
+        public string Role { get; set; }
 
         [NotMapped]
-
-        public string Role { get; set; }
+        public string Token { get; set; }
     }
 }

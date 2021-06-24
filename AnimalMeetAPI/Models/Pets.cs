@@ -20,7 +20,7 @@ namespace AnimalMeetAPI.Models
         [Required]
         public SexType Sex { get; set; }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         //hidden
         [ForeignKey("UserId")]
