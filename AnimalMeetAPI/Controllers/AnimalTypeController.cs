@@ -87,7 +87,7 @@ namespace AnimalMeetAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetTrail", new { id = animTypeObj.Id }, animTypeObj);
+            return CreatedAtRoute("GetAnimalType", new { id = animTypeObj.Id }, animTypeObj);
         }
 
         [HttpPatch("{id:int}", Name = "UpdateAnimalType")]
