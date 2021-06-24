@@ -35,7 +35,7 @@ namespace AnimalMeetAPI.Repository
             return _db.Pets.OrderBy(a => a.Name).ToList();
         }
 
-        public Pets GetPets(int id)
+        public Pets GetPet(int id)
         {
             return _db.Pets.FirstOrDefault(a => a.Id == id);
         }

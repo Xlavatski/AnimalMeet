@@ -11,7 +11,7 @@ namespace AnimalMeetAPI.Repository.IRepository
         ICollection<Pets> GetPets();
         ICollection<Pets> GetPetsInAnimalSubType(int animSubTypeId);
         ICollection<Pets> GetPetsInUser(string userId);
-        Pets GetPets(int id);
+        Pets GetPet(int id);
         bool PetsExist(string name);
         bool PetsExist(int id);
         bool CreatePets(Pets pets);
