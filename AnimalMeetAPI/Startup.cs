@@ -36,6 +36,8 @@ namespace AnimalMeetAPI
 
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IAnimalTypeRepository, AnimalTypeRepository>();
+            services.AddScoped<IAnimalSubTypeRepository, AnimalSubTypeRepository>();
+            services.AddScoped<IPetsRepository, PetsRepository>();
 
             services.AddAutoMapper(typeof(AnimalMeetMappings));
 
