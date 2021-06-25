@@ -30,24 +30,15 @@ namespace AnimalMeetAPI.Repository
             return Save();
         }
 
-        public ICollection<Pets> GetPets()
-        {
-            return _db.Pets.OrderBy(a => a.Name).ToList();
-        }
-
         public Pets GetPet(int id)
         {
-            return _db.Pets.FirstOrDefault(a => a.Id == id);
+            return _db.Pets.Include(c => c.AnimalSubtype).FirstOrDefault(a => a.Id == id);
+            
         }
 
-        public ICollection<Pets> GetPetsInAnimalSubType(int animSubTypeId)
+        public ICollection<Pets> GetPets()
         {
-            return _db.Pets.Include(c => c.AnimalSubtype).Where(c => c.AnimalSubtypeId == animSubTypeId).ToList();
-        }
-
-        public ICollection<Pets> GetPetsInUser(int userId)
-        {
-            return _db.Pets.Include(c => c.User).Where(c => c.UserId == userId).ToList();
+            return _db.Pets.Include(c => c.AnimalSubtype).OrderBy(a => a.Name).ToList();
         }
 
         public bool PetsExist(string name)
@@ -71,5 +62,16 @@ namespace AnimalMeetAPI.Repository
             _db.Pets.Update(pets);
             return Save();
         }
+
+        public ICollection<Pets> GetPetsInAnimalSubType(int animSubTypeId)
+        {
+            return _db.Pets.Include(c => c.AnimalSubtype).Where(c => c.AnimalSubtypeId == animSubTypeId).ToList();
+        }
+
+        public ICollection<Pets> GetPetsInUser(int userId)
+        {
+            return _db.Pets.Include(c => c.User).Where(c => c.UserId == userId).ToList();
+        }
+
     }
 }

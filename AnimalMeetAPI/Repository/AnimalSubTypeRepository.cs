@@ -43,12 +43,12 @@ namespace AnimalMeetAPI.Repository
 
         public AnimalSubtype GetAnimalSubType(int id)
         {
-            return _db.AnimalSubtypes.FirstOrDefault(a => a.Id == id);
+            return _db.AnimalSubtypes.Include(c => c.AnimalType).FirstOrDefault(a => a.Id == id);
         }
 
         public ICollection<AnimalSubtype> GetAnimalSubTypes()
         {
-            return _db.AnimalSubtypes.OrderBy(a => a.Name).ToList();
+            return _db.AnimalSubtypes.Include(c => c.AnimalType).OrderBy(a => a.Name).ToList();
         }
 
         public bool Save()
