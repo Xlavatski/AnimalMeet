@@ -20,6 +20,7 @@ namespace AnimalMeetAPI.AutoMapper
             CreateMap<Pets, PetsDto>().ReverseMap();
             CreateMap<Pets, PetsCreateDto>().ReverseMap();
             CreateMap<Pets, PetsUpdateDto>().ReverseMap();
+            CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
         }
     }
 }
