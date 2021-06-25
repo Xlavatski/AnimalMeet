@@ -32,13 +32,13 @@ namespace AnimalMeetAPI.Repository
 
         public Pets GetPet(int id)
         {
-            return _db.Pets.Include(c => c.AnimalSubtype).FirstOrDefault(a => a.Id == id);
+            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User.City).FirstOrDefault(a => a.Id == id);
             
         }
 
         public ICollection<Pets> GetPets()
         {
-            return _db.Pets.Include(c => c.AnimalSubtype).OrderBy(a => a.Name).ToList();
+            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User).OrderBy(a => a.Name).ToList();
         }
 
         public bool PetsExist(string name)
