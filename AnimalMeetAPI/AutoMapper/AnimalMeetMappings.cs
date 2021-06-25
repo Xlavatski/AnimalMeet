@@ -15,7 +15,11 @@ namespace AnimalMeetAPI.AutoMapper
             CreateMap<City, CityDto>().ReverseMap();
             CreateMap<AnimalType, AnimalTypeDto>().ReverseMap();
             CreateMap<AnimalSubtype, AnimalSubtypeDto>().ReverseMap();
+            CreateMap<AnimalSubtype, AnimalSubtypeCreateDto>().ReverseMap();
+            CreateMap<AnimalSubtype, AnimalSubtypeUpdateDto>().ReverseMap();
             CreateMap<Pets, PetsDto>().ReverseMap();
+            CreateMap<Pets, PetsCreateDto>().ReverseMap();
+            CreateMap<Pets, PetsUpdateDto>().ReverseMap();
         }
     }
 }
