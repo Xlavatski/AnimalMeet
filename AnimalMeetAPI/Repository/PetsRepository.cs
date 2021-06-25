@@ -52,22 +52,24 @@ namespace AnimalMeetAPI.Repository
 
         public bool PetsExist(string name)
         {
-            throw new NotImplementedException();
+            bool value = _db.Pets.Any(a => a.Name.ToLower().Trim() == name.ToLower().Trim());
+            return value;
         }
 
         public bool PetsExist(int id)
         {
-            throw new NotImplementedException();
+            return _db.Pets.Any(a => a.Id == id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _db.SaveChanges() >= 0 ? true : false;
         }
 
         public bool UpdatePets(Pets pets)
         {
-            throw new NotImplementedException();
+            _db.Pets.Update(pets);
+            return Save();
         }
     }
 }
