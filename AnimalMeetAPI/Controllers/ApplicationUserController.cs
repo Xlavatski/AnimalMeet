@@ -58,7 +58,7 @@ namespace AnimalMeetAPI.Controllers
             {
                 return NotFound();
             }
-            var objDto = _mapper.Map<AnimalSubtypeDto>(obj);
+            var objDto = _mapper.Map<ApplicationUserDto>(obj);
             return Ok(objDto);
         }
 
