@@ -106,7 +106,7 @@ namespace AnimalMeetAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreatePets([FromBody] PetsDto petsDto)
+        public IActionResult CreatePets([FromBody] PetsCreateDto petsDto)
         {
             if (petsDto == null)
             {
@@ -134,7 +134,7 @@ namespace AnimalMeetAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdatePets(int id, [FromBody] PetsDto petsDto)
+        public IActionResult UpdatePets(int id, [FromBody] PetsUpdateDto petsDto)
         {
             if (petsDto == null || id != petsDto.Id)
             {
