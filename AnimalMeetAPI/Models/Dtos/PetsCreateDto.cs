@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static AnimalMeetAPI.Models.Pets;
 
 namespace AnimalMeetAPI.Models.Dtos
 {
@@ -13,7 +14,6 @@ namespace AnimalMeetAPI.Models.Dtos
         public byte[] Image { get; set; }
         [Required]
         public int Age { get; set; }
-        public enum SexType { Male, Female }
         [Required]
         public SexType Sex { get; set; }
         //hidden
