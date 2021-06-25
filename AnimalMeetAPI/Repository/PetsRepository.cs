@@ -38,7 +38,7 @@ namespace AnimalMeetAPI.Repository
 
         public ICollection<Pets> GetPets()
         {
-            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User).OrderBy(a => a.Name).ToList();
+            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User.City).OrderBy(a => a.Name).ToList();
         }
 
         public bool PetsExist(string name)
@@ -65,12 +65,12 @@ namespace AnimalMeetAPI.Repository
 
         public ICollection<Pets> GetPetsInAnimalSubType(int animSubTypeId)
         {
-            return _db.Pets.Include(c => c.AnimalSubtype).Where(c => c.AnimalSubtypeId == animSubTypeId).ToList();
+            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User.City).Where(c => c.AnimalSubtypeId == animSubTypeId).ToList();
         }
 
         public ICollection<Pets> GetPetsInUser(int userId)
         {
-            return _db.Pets.Include(c => c.User).Where(c => c.UserId == userId).ToList();
+            return _db.Pets.Include(c => c.AnimalSubtype.AnimalType).Include(c => c.User.City).Where(c => c.UserId == userId).ToList();
         }
 
     }
