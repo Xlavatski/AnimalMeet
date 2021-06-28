@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/city")]
     [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class CityController : ControllerBase

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authuser")]
     [ApiController]
     public class AuthUserController : ControllerBase
     {
