@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AnimalMeetAPI</name>
+    </assembly>
+    <members>
+        <member name="M:AnimalMeetAPI.Controllers.AnimalSubTypeController.GetAnimalSubTypes">
+            <summary>
+            Get list of animal subtypes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.AnimalSubTypeController.GetAnimalSubType(System.Int32)">
+            <summary>
+            Get individual animal subtype.
+            </summary>
+            <param name="id">The Id od the animal subtype</param>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.AnimalTypeController.GetAnimalTypes">
+            <summary>
+            Get list of animal types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.AnimalTypeController.GetAnimalType(System.Int32)">
+            <summary>
+            Get individual animal type.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.CityController.GetCities">
+            <summary>
+            Get list of cities.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.CityController.GetCity(System.Int32)">
+            <summary>
+            Get individual city.
+            </summary>
+            <param name="cityId"> The Id of city </param>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.PetsController.GetPets">
+            <summary>
+            Get list of pets.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnimalMeetAPI.Controllers.PetsController.GetPet(System.Int32)">
+            <summary>
+            Get individual pet.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
