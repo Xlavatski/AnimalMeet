@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
