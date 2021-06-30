@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AnimalMeetWeb.Controllers
+namespace AnimalMeetWeb.Areas.User
 {
     [Area("User")]
     public class HomeController : Controller
