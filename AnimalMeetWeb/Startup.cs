@@ -26,6 +26,9 @@ namespace AnimalMeetWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAnimalSubTypeRepository, AnimalSubTypeRepository>();
+            services.AddScoped<IAnimalTypeRepository, AnimalTypeRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IPetsRepository, PetsRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
