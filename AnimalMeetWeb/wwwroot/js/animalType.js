@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/animalType/GetAllAnimalType",
+            "url": "/Admin/animalType/GetAllAnimalType",
             "type": "GET",
             "datatype": "json"
         },
@@ -17,10 +17,10 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/animalType/Upsert/${data}" class='btn btn-success text-white'
+                                <a href="/Admin/animalType/Upsert/${data}" class='btn btn-success text-white'
                                     style='cursor:pointer;'> <i class='far fa-edit'></i></a>
                                     &nbsp;
-                                <a onclick=Delete("/animalType/Delete/${data}") class='btn btn-danger text-white'
+                                <a onclick=Delete("/Admin/animalType/Delete/${data}") class='btn btn-danger text-white'
                                     style='cursor:pointer;'> <i class='far fa-trash-alt'></i></a>
                                 </div>
                             `;
