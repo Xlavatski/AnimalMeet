@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="p-4" style="border-radius:20px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-white">City List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-secondary text-white" asp-action="Upsert"><i class="fas fa-plus"></i> &nbsp; Create New City</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div style="background-color:white" class="p-3 rounded">
+        <table id="tblData" class="table table-hover table-bordered" style="width:100%">
+            <thead>
+                <tr style="background-color:darkgrey">
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/city.js"></script>
+}
