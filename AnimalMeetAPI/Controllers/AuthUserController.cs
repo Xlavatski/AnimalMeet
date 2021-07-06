@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace AnimalMeetAPI.Controllers
 {
     [Route("api/authuser")]
@@ -43,10 +44,15 @@ namespace AnimalMeetAPI.Controllers
                 return BadRequest(new { message = "Username alredy exists" });
             }
 
-            //dodati još uvjete da pass mora sadržavati najmanje jedan broj i jedno veliko slovo. 
-            if (model.Password.Length < 7) 
+            if (model.Username.Length < 3) 
             {
-                return BadRequest(new { message = "Password not correct" });
+                return BadRequest(new { message = "Username must contain at least three letters" });
+            }
+
+
+            if (model.Password.Length < 7 || model.Password.Any(char.IsDigit) == false) 
+            {
+                return BadRequest(new { message = "Password must contain a minimum of seven characters and at least one number" });
             }
 
             var user = _userRepository.Register(model.Username, model.Password, model.Name, model.Surname, model.City);

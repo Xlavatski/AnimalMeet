@@ -26,7 +26,7 @@ namespace AnimalMeetAPI.Repository.IRepository
 
         public ApplicationUser Authenticate(string username, string password)
         {
-            var user = _db.ApplicationUsers.SingleOrDefault(x => x.Username == username /*&& x.Password == password*/);
+            var user = _db.ApplicationUsers.SingleOrDefault(x => x.Username == username);
 
             if (user == null || !BC.Verify(password, user.Password)) 
             {
