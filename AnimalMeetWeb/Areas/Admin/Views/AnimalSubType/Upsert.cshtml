@@ -20,7 +20,7 @@
                     Animal Type
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(m => m.AnimalSubType.AnimalTypeId, Model.AnimalTypeList, "-Please select a type-", new { @class = "form-control", @style = "color:black" })
+                    @Html.DropDownListFor(m => m.AnimalSubType.AnimalTypeId, Model.AnimalTypeList, "-Please select a type-", new { @class = "form-select option"})
                     <span asp-validation-for="AnimalSubType.AnimalTypeId" class="text-danger"></span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <label asp-for="AnimalSubType.Name"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="AnimalSubType.Name" class="form-control" style="color:black" />
+                    <input asp-for="AnimalSubType.Name" class="form-control" />
                     <span asp-validation-for="AnimalSubType.Name" class="text-danger"></span>
                 </div>
             </div>

@@ -2582,6 +2582,10 @@ textarea.form-control-lg {
     }
 }
 
+.form-select option {
+    background-color:black;
+}
+
 .form-select:focus {
     border-color: rgba(255, 255, 255, 0.4);
     outline: 0;
