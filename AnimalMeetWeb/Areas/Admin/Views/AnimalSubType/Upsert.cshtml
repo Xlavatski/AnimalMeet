@@ -1,0 +1,48 @@
+﻿@model AnimalMeetWeb.Models.ViewModel.AnimalSubTypeVM
+@{
+    var title = "Create Animal SubType";
+}
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.AnimalSubType.Id != 0)
+        {
+            <input type="hidden" asp-for="AnimalSubType.Id" />
+            title = "Edit Animal SubType";
+        }
+        <div class="col-12 p-3">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    Animal Type
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.AnimalSubType.AnimalTypeId, Model.AnimalTypeList, "-Please select a type-", new { @class = "form-control", @style = "color:black" })
+                    <span asp-validation-for="AnimalSubType.AnimalTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="AnimalSubType.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="AnimalSubType.Name" class="form-control" style="color:black" />
+                    <span asp-validation-for="AnimalSubType.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4 offset-4">
+                    <button type="submit" class="btn btn-primary form-control">
+                        @(Model.AnimalSubType.Id !=0?"Update":"Create")
+                    </button>
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

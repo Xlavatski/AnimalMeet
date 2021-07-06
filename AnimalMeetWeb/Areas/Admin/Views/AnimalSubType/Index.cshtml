@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="p-4" style="border-radius:20px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Animal SubType List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Upsert" asp-controller="AnimalSubType" class="btn btn-secondary text-white"><i class="fas fa-plus"></i> &nbsp; Create New Animal SubType</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div style="background-color:white" class="p-3 rounded">
+        <table id="tblData" class="table table-hover table-bordered" style="width:100%">
+            <thead>
+                <tr style="background-color:darkgrey">
+                    <th>Animal Type</th>
+                    <th>Animal SubType Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-light" style="color:black">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/animalSubType.js"></script>
+}
