@@ -1,5 +1,6 @@
 using AnimalMeetWeb.Repository;
 using AnimalMeetWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,15 +26,36 @@ namespace AnimalMeetWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                    options.LoginPath = "/Home/Login";
+                    options.AccessDeniedPath = "/Home/AccessDeined";
+                    options.SlidingExpiration = true;
+                });
+            services.AddHttpContextAccessor();
+
             services.AddScoped<IAnimalSubTypeRepository, AnimalSubTypeRepository>();
             services.AddScoped<IAnimalTypeRepository, AnimalTypeRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IPetsRepository, PetsRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddHttpClient();
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +72,13 @@ namespace AnimalMeetWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors(x => x
+             .AllowAnyOrigin()
+             .AllowAnyMethod()
+             .AllowAnyHeader());
 
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

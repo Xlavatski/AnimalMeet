@@ -42,6 +42,13 @@ namespace AnimalMeetAPI.Controllers
             {
                 return BadRequest(new { message = "Username alredy exists" });
             }
+
+            //dodati još uvjete da pass mora sadržavati najmanje jedan broj i jedno veliko slovo. 
+            if (model.Password.Length < 7) 
+            {
+                return BadRequest(new { message = "Password not correct" });
+            }
+
             var user = _userRepository.Register(model.Username, model.Password, model.Name, model.Surname, model.City);
 
             if (user == null)

@@ -1,5 +1,6 @@
 ﻿using AnimalMeetWeb.Models;
 using AnimalMeetWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace AnimalMeetWeb.Areas.Admin
 {
     [Area("Admin")]
+    //[Authorize]
     public class CityController : Controller
     {
         private readonly ICityRepository _cityRepository;
@@ -33,7 +35,7 @@ namespace AnimalMeetWeb.Areas.Admin
                 return View(obj);
             }
 
-            obj = await _cityRepository.GetAsync(SD.CityAPIPath, id.GetValueOrDefault()/*, HttpContext.Session.GetString("JWToken")*/);
+            obj = await _cityRepository.GetAsync(SD.CityAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
 
             if (obj == null) 
             {
@@ -51,11 +53,11 @@ namespace AnimalMeetWeb.Areas.Admin
             {
                 if (objC.Id == 0)
                 {
-                    await _cityRepository.CreateAsync(SD.CityAPIPath, objC);
+                    await _cityRepository.CreateAsync(SD.CityAPIPath, objC, HttpContext.Session.GetString("JWToken"));
                 }
                 else 
                 {
-                    await _cityRepository.UpdateAsync(SD.CityAPIPath+objC.Id, objC);
+                    await _cityRepository.UpdateAsync(SD.CityAPIPath+objC.Id, objC, HttpContext.Session.GetString("JWToken"));
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -65,13 +67,13 @@ namespace AnimalMeetWeb.Areas.Admin
 
         public async Task<IActionResult> GetAllCity() 
         {
-            return Json(new { data = await _cityRepository.GetAllAsync(SD.CityAPIPath)});
+            return Json(new { data = await _cityRepository.GetAllAsync(SD.CityAPIPath, HttpContext.Session.GetString("JWToken")) });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id) 
         {
-            var status = await _cityRepository.DeleteAsync(SD.CityAPIPath, id);
+            var status = await _cityRepository.DeleteAsync(SD.CityAPIPath, id, HttpContext.Session.GetString("JWToken"));
 
             if (status) 
             {

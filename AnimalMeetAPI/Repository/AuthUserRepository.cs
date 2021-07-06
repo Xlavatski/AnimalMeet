@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace AnimalMeetAPI.Repository.IRepository
 {
@@ -25,9 +26,9 @@ namespace AnimalMeetAPI.Repository.IRepository
 
         public ApplicationUser Authenticate(string username, string password)
         {
-            var user = _db.ApplicationUsers.SingleOrDefault(x => x.Username == username && x.Password == password);
+            var user = _db.ApplicationUsers.SingleOrDefault(x => x.Username == username /*&& x.Password == password*/);
 
-            if (user == null) 
+            if (user == null || !BC.Verify(password, user.Password)) 
             {
                 return null;
             }
@@ -69,9 +70,12 @@ namespace AnimalMeetAPI.Repository.IRepository
                 Username = username,
                 Password = password,
                 Name = name,
+                Surname = surname,
                 CityId = cityId,
                 Role = "User"
             };
+
+            userObj.Password = BC.HashPassword(password);
 
             _db.ApplicationUsers.Add(userObj);
             _db.SaveChanges();
