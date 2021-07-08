@@ -1,4 +1,5 @@
 ﻿using AnimalMeetWeb.Models;
+using AnimalMeetWeb.Models.ViewModel;
 using AnimalMeetWeb.Repository.IRepository;
 using Newtonsoft.Json;
 using System;
@@ -45,6 +46,31 @@ namespace AnimalMeetWeb.Repository
                 return new UserLogin();
             }
 
+        }
+
+        public async Task<bool> RegisterAsync(string url, UserRegisterVM objToCreate)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            if (objToCreate != null)
+            {
+                request.Content = new StringContent(JsonConvert.SerializeObject(objToCreate.UserRegister), Encoding.UTF8, "application/json");
+            }
+            else 
+            {
+                return false;
+            }
+
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

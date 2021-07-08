@@ -1,0 +1,31 @@
+﻿@model AnimalMeetWeb.Models.ViewModel.UserRegisterVM
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/User/Views/_AuthLayout.cshtml";
+}
+
+<h1>Register</h1>
+
+<form method="post" asp-action="Register">
+    <div class="col-8">
+        <input asp-for="UserRegister.Name" type="text" placeholder="Name..." class="form-control" />
+        <br />
+        <input asp-for="UserRegister.Surname" type="text" placeholder="Surname..." class="form-control" />
+        <br />
+        <input asp-for="UserRegister.Username" type="text" placeholder="Username..." class="form-control" />
+        <br />
+        <input asp-for="UserRegister.Password" type="password" placeholder="Password..." class="form-control" />
+        <br />
+        <div>
+            <select asp-for="UserRegister.City" asp-items="ViewBag.CityList as SelectList" class="form-select option">
+            </select>
+            @*Html.DropDownListFor(m => m.UserRegister.CityId, Model.CityList, "-Please select a type-", new { @class = "form-select option" })*@
+            <span asp-validation-for="UserRegister.City" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="col-4 offset-4">
+            <button type="submit" value="Submit" class="btn btn-primary form-control">Register</button>
+        </div>
+    </div>
+</form>
+

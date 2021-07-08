@@ -1,13 +1,23 @@
 ﻿@model AnimalMeetWeb.Models.UserLogin
 @{
     ViewData["Title"] = "Login";
+    Layout = "~/Areas/User/Views/_AuthLayout.cshtml";
 }
 
 <h1>Login</h1>
 
-<form method="post">
-    <input asp-for="Username" type="text" placeholder="Username..." />
-    <input asp-for="Password" type="password" placeholder="Password..." />
-    <button type="submit" value="Submit">Login</button>
+<form method="post" asp-action="Login">
+    <div class="col-8">
+        <input asp-for="Username" type="text" placeholder="Username..." class="form-control" />
+        <br />
+        <br />
+        <input asp-for="Password" type="password" placeholder="Password..." class="form-control" />
+        <br />
+        <br />
+        <div class="col-4 offset-4">
+            <button type="submit" value="Submit" class="btn btn-primary form-control">Login</button>
+        </div>
+    </div>
 </form>
+
 

@@ -1,9 +1,11 @@
 ﻿using AnimalMeetWeb.Models;
+using AnimalMeetWeb.Models.ViewModel;
 using AnimalMeetWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,13 @@ namespace AnimalMeetWeb.Areas.User
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IAccountRepository _repoAcco;
+        private readonly ICityRepository _cityRepository;
 
-        public HomeController(ILogger<HomeController> logger, IAccountRepository repoAcco)
+        public HomeController(ILogger<HomeController> logger, IAccountRepository repoAcco, ICityRepository cityRepository)
         {
             _logger = logger;
             _repoAcco = repoAcco;
+            _cityRepository = cityRepository;
         }
 
         public IActionResult Index()
@@ -76,6 +80,40 @@ namespace AnimalMeetWeb.Areas.User
             await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("JWToken", "");
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register() 
+        {
+            IEnumerable<City> cList = await _cityRepository.GetAllAsync(SD.CityAPIPath, HttpContext.Session.GetString("JWToken"));
+
+            ViewBag.CityList = new SelectList(cList, "Id", "Name");
+
+            UserRegisterVM objVM = new UserRegisterVM()
+            { 
+                UserRegister = new UserRegister()
+            };
+
+            return View(objVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(UserRegisterVM obj) 
+        {
+            bool result = await _repoAcco.RegisterAsync(SD.AuthUserAPIPath + "register/", obj);
+
+            if (result == false) 
+            {
+                IEnumerable<City> cList = await _cityRepository.GetAllAsync(SD.CityAPIPath, HttpContext.Session.GetString("JWToken"));
+
+                ViewBag.CityList = new SelectList(cList, "Id", "Name", obj.UserRegister.City);
+
+                return View();
+            }
+
+            TempData["alert"] = "Registration Seccesfull ";
+            return RedirectToAction(nameof(Login));
         }
     }
 }

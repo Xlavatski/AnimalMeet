@@ -85,7 +85,7 @@ namespace AnimalMeetWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=User}/{controller=Home}/{action=Login}/{id?}");
                 //endpoints.MapRazorPages();
             });
         }
