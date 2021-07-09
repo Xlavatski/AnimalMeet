@@ -30,6 +30,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:AnimalMeetAPI.Controllers.AuthUserController.GetAnimalSubType(System.Int32)">
+            <summary>
+            Get individual user.
+            </summary>
+            <param name="id">User id</param>
+            <returns></returns>
+        </member>
         <member name="M:AnimalMeetAPI.Controllers.CityController.GetCities">
             <summary>
             Get list of cities.

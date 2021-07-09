@@ -10,7 +10,7 @@ namespace AnimalMeetAPI.Repository.IRepository
     {
         bool IsUniqueUser(string username);
         ApplicationUser Authenticate(string username, string password); 
-        ApplicationUser Register(string username, string password, string name, string surname, int? cityId); 
-
+        ApplicationUser Register(string username, string password, string name, string surname, int? cityId);
+        ApplicationUser GetUser(int id);
     }
 }

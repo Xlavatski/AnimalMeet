@@ -1,5 +1,7 @@
 ﻿using AnimalMeetAPI.Models;
+using AnimalMeetAPI.Models.Dtos;
 using AnimalMeetAPI.Repository.IRepository;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +18,12 @@ namespace AnimalMeetAPI.Controllers
     public class AuthUserController : ControllerBase
     {
         private readonly IAuthUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public AuthUserController(IAuthUserRepository userRepository)
+        public AuthUserController(IAuthUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -64,5 +68,26 @@ namespace AnimalMeetAPI.Controllers
 
             return Ok();
         }
+
+        /// <summary>
+        /// Get individual user.
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <returns></returns>
+        [HttpGet("{id:int}", Name = "GetUser")]
+        [ProducesResponseType(200, Type = typeof(ApplicationUserDto))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
+        public IActionResult GetAnimalSubType(int id)
+        {
+            var obj = _userRepository.GetUser(id);
+            if (obj == null) 
+            {
+                return NotFound();
+            }
+            var objDto = _mapper.Map<ApplicationUserDto>(obj);
+            return Ok(objDto);
+        }
+
     }
 }

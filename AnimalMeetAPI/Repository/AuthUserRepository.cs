@@ -1,5 +1,6 @@
 ﻿using AnimalMeetAPI.Data;
 using AnimalMeetAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -81,6 +82,11 @@ namespace AnimalMeetAPI.Repository.IRepository
             _db.SaveChanges();
             userObj.Password = "";
             return userObj;
+        }
+
+        public ApplicationUser GetUser(int id)
+        {
+            return _db.ApplicationUsers.Include(c => c.City).FirstOrDefault(a => a.Id == id);
         }
     }
 }
