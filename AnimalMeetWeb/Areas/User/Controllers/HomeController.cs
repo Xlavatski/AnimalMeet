@@ -79,7 +79,7 @@ namespace AnimalMeetWeb.Areas.User
         {
             await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("JWToken", "");
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Login));
         }
 
         [HttpGet]
