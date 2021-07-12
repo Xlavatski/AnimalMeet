@@ -1,5 +1,6 @@
 using AnimalMeetWeb.Repository;
 using AnimalMeetWeb.Repository.IRepository;
+using AnimalMeetWeb.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,7 @@ namespace AnimalMeetWeb
                     options.AccessDeniedPath = "/Home/AccessDeined";
                     options.SlidingExpiration = true;
                 });
+
             services.AddHttpContextAccessor();
 
             services.AddScoped<IAnimalSubTypeRepository, AnimalSubTypeRepository>();
@@ -42,6 +44,7 @@ namespace AnimalMeetWeb
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IPetsRepository, PetsRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

@@ -70,7 +70,8 @@ namespace AnimalMeetWeb.Areas.User
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             HttpContext.Session.SetString("JWToken", objUser.Token);
-            TempData["alert"] = "Welcom " + objUser.Username;
+            //TempData["alert"] = "Welcom " + objUser.Username;
+
 
             return RedirectToAction(nameof(Index));
         }

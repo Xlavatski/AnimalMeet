@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Repository.IRepository
 {
-    public interface IAccountRepository
+    public interface IAccountRepository : IRepository<User>
     {
         Task<UserLogin> LoginAsync(string url, UserLogin objToCreate);
         Task<bool> RegisterAsync(string url, UserRegisterVM objToCreate);

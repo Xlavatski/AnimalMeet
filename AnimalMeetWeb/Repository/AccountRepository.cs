@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Repository
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : Repository<User>, IAccountRepository
     {
         private readonly IHttpClientFactory _clientFactory;
 
-        public AccountRepository(IHttpClientFactory clientFactory) /*: base(clientFactory)*/
+        public AccountRepository(IHttpClientFactory clientFactory) : base(clientFactory)
         {
             _clientFactory = clientFactory;
         }
