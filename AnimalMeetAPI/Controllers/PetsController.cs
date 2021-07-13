@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetAPI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin" + "," + "User")]
     [Route("api/pets")]
     [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

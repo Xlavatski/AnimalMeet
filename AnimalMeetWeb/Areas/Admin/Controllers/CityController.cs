@@ -8,10 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AnimalMeetWeb.Areas.Admin
+namespace AnimalMeetWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize]
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         private readonly ICityRepository _cityRepository;

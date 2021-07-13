@@ -1,5 +1,4 @@
-﻿using AnimalMeetAPI.Models;
-using AnimalMeetWeb.Models;
+﻿using AnimalMeetWeb.Models;
 using AnimalMeetWeb.Models.ViewModel;
 using AnimalMeetWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
@@ -10,12 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AnimalType = AnimalMeetWeb.Models.AnimalType;
 
 namespace AnimalMeetWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AnimalSubTypeController : Controller
     {
         private readonly IAnimalTypeRepository _animTypeRepo;
@@ -32,7 +30,6 @@ namespace AnimalMeetWeb.Areas.Admin.Controllers
             return View(new AnimalSubType() { });
         }
 
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             IEnumerable<AnimalType> animTypeList = await _animTypeRepo.GetAllAsync(SD.AnimalTypeAPIPath, HttpContext.Session.GetString("JWToken"));
