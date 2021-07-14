@@ -8,5 +8,6 @@ namespace AnimalMeetWeb.Services
     public interface IUserService
     {
         string UserName { get; }
+        int Id { get; }
     }
 }

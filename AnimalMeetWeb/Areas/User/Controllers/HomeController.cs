@@ -66,6 +66,7 @@ namespace AnimalMeetWeb.Areas.User
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
             identity.AddClaim(new Claim(ClaimTypes.Name, objUser.Username));
             identity.AddClaim(new Claim(ClaimTypes.Role, objUser.Role));
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, objUser.Id.ToString()));
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 

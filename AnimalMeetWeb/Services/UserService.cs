@@ -37,5 +37,26 @@ namespace AnimalMeetWeb.Services
                 return userName;
             }
         }
+
+        public int Id
+        {
+            get
+            {
+                if (User is null)
+                {
+                    return -1;
+                }
+
+                var idString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if(int.TryParse(idString, out int id))
+                {
+                    return id;
+                }
+
+                return -1;
+            }
+        }
+
     }
 }

@@ -8,5 +8,6 @@ namespace AnimalMeetWeb.Repository.IRepository
 {
     public interface IPetsRepository : IRepository<Pets>
     {
+        Task<IEnumerable<Pets>> GetAllPetsOfUserAsync(string url, int Id, string token);
     }
 }

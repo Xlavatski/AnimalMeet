@@ -31,6 +31,7 @@ namespace AnimalMeetAPI.Controllers
         /// Get list of cities.
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<CityDto>))]
         public IActionResult GetCities() 
