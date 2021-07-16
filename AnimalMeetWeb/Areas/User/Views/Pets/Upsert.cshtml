@@ -1,0 +1,100 @@
+﻿@model AnimalMeetWeb.Models.Pets
+@inject AnimalMeetWeb.Services.IUserService user;
+@{
+    var title = "Create Pets";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Id != 0)
+        {
+            <input type="hidden" asp-for="Id" />
+            title = "Edit Pets";
+        }
+
+        <div class="col-12 p-3">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Image"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" asp-for="Image" id="projectImage" name="file" multiple class="form-control" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Age"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Sex"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Sex"
+                            asp-items="Html.GetEnumSelectList<Pets.SexType>()"
+                            class="form-select option">
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="AnimalSubtype.AnimalType.Name"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="AnimalSubtype.AnimalType.Name" asp-items="ViewBag.AnimalTypLis as SelectList" class="form-select option">
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="AnimalSubtype.Name"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="AnimalSubtype.Name" asp-items="ViewBag.AnimalSubTypLis as SelectList" class="form-select option">
+                    </select>
+                </div>
+            </div>
+            <br />
+
+            <div>
+                <input type="hidden" asp-for="UserId" value="@user.Id"/>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4 offset-4">
+                    <button type="submit" class="btn btn-primary form-control">
+                        @(Model.Id !=0?"Update":"Create")
+                    </button>
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

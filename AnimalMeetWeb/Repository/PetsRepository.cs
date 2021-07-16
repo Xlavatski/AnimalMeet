@@ -20,7 +20,7 @@ namespace AnimalMeetWeb.Repository
             _clientFactory = clientFactory;
         }
 
-        public async Task<IEnumerable<Pets>> GetAllPetsOfUserAsync(string url, int Id, string token = "")
+        public async Task<IEnumerable<Pets>> GetAllPetsOfUserAsync(string url, int? Id, string token = "")
         {
             var request = new HttpRequestMessage(HttpMethod.Get, url+Id);
 
