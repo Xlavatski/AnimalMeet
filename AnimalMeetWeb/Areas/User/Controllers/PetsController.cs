@@ -38,10 +38,15 @@ namespace AnimalMeetWeb.Areas.User.Controllers
 
         public async Task<IActionResult> Upsert(int? id) 
         {
-            if (id != null) 
-            {
-                IEnumerable<Pets> PetsList = await _petsRepo.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", id, HttpContext.Session.GetString("JWToken"));
-            }
+            Pets objPets = new Pets();
+            int? idUser = _userService.Id;
+
+            IEnumerable<Pets> PetsList = await _petsRepo.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
+            //if (PetsList == )
+            //{
+            //    return View(objPets);
+            //}
+
 
             IEnumerable<AnimalType> AnimTypeList = await _animalTypeRepo.GetAllAsync(SD.AnimalTypeAPIPath, HttpContext.Session.GetString("JWToken"));
 
@@ -51,7 +56,6 @@ namespace AnimalMeetWeb.Areas.User.Controllers
 
             ViewBag.AnimalSubTypLis = new SelectList(AnimaSubtypeList, "Id", "Name");
 
-            Pets objPets = new Pets();
 
             if (id == null) 
             {

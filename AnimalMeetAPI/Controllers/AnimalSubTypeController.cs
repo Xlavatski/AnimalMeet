@@ -30,6 +30,7 @@ namespace AnimalMeetAPI.Controllers
         /// Get list of animal subtypes.
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<AnimalSubtypeDto>))]
         public IActionResult GetAnimalSubTypes()
@@ -48,6 +49,7 @@ namespace AnimalMeetAPI.Controllers
         /// </summary>
         /// <param name="id">The Id od the animal subtype</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id:int}", Name = "GetAnimalSubType")]
         [ProducesResponseType(200, Type = typeof(AnimalSubtypeDto))]
         [ProducesResponseType(404)]
@@ -63,6 +65,7 @@ namespace AnimalMeetAPI.Controllers
             return Ok(objDto);
         }
 
+        [AllowAnonymous]
         [HttpGet("[action]/{animTypeId:int}")]
         [ProducesResponseType(200, Type = typeof(AnimalSubtypeDto))]
         [ProducesResponseType(404)]

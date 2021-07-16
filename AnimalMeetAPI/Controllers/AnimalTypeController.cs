@@ -30,6 +30,7 @@ namespace AnimalMeetAPI.Controllers
         /// Get list of animal types.
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<AnimalTypeDto>))]
         public IActionResult GetAnimalTypes()
@@ -48,6 +49,7 @@ namespace AnimalMeetAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{id:int}", Name = "GetAnimalType")]
         [ProducesResponseType(200, Type = typeof(AnimalTypeDto))]
         [ProducesResponseType(404)]
