@@ -8,6 +8,6 @@ namespace AnimalMeetWeb.Models.ViewModel
     public class IndexVM
     {
         public IEnumerable<AnimalType> AnimalTypeList { get; set; }
-        public IEnumerable<AnimalSubType> AnimalSubTypeLsit { get; set; }
+        public IEnumerable<AnimalSubType> AnimalSubTypeList { get; set; }
     }
 }
