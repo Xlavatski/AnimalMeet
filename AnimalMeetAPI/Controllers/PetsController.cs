@@ -63,6 +63,7 @@ namespace AnimalMeetAPI.Controllers
             return Ok(objDto);
         }
 
+        //Metoda vraca koliko ima kucnih ljubimaca po određenoj pod vrsti
         [HttpGet("[action]/{animSubTypeId:int}")]
         [ProducesResponseType(200, Type = typeof(PetsDto))]
         [ProducesResponseType(404)]
@@ -98,6 +99,10 @@ namespace AnimalMeetAPI.Controllers
             var objDto = new List<PetsDto>();
             foreach (var obj in objList)
             {
+                //string test = obj.Sex.ToString();
+                //int test1 = (int)obj.Sex;
+                //Pets.SexType Sex = (Pets.SexType)Enum.GetValues(typeof(Pets.SexType)).GetValue(test1);
+
                 objDto.Add(_mapper.Map<PetsDto>(obj));
             }
             return Ok(objDto);

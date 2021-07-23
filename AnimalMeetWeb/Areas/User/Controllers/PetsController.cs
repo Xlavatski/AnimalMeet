@@ -72,12 +72,30 @@ namespace AnimalMeetWeb.Areas.User.Controllers
             return View(objPets);
         }
 
-
+        #region API region
         public async Task<IActionResult> GetAllPets() 
         {
             int idUser = _userService.Id;
             return Json(new { data = await _petsRepo.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken")) });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetTypeOfSubtype(int? idType)
+        {
+            IEnumerable<AnimalSubType> objType = await _animalSubTypeRepo.GetAllSubTypesOfTypeAsync(SD.AnimalSubTypeAPIPath + "GetSubTypesInAnimalType/", idType, HttpContext.Session.GetString("JWToken"));
+            
+            SelectList obgtype = new SelectList(objType, "Id", "Name", 0);
+            ViewBag.obgtype = new SelectList(objType, "Id", "Name", 0);
+            return Json(obgtype);
+        }
+
+
+        //public async Task<IActionResult> GetTypeOfSubtype(int? idType)
+        //{
+
+        //    return Json(new { data = await _animalSubTypeRepo.GetAllSubTypesOfTypeAsync(SD.AnimalSubTypeAPIPath + "GetSubTypesInAnimalType/", idType, HttpContext.Session.GetString("JWToken")) });
+        //}
+
+        #endregion
     }
 }

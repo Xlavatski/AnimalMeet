@@ -7,7 +7,7 @@ namespace AnimalMeetWeb
 {
     public static class SD
     {
-        public static string APIBaseUrl = "http://localhost:56613/";
+        public static string APIBaseUrl = "http://localhost:56614/";
         public static string AnimalSubTypeAPIPath = APIBaseUrl + "api/animalsubtype/";
         public static string AnimalTypeAPIPath = APIBaseUrl + "api/animaltype/";
         public static string AuthUserAPIPath = APIBaseUrl + "api/authuser/";

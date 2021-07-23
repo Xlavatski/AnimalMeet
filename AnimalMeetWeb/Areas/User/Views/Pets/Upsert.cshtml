@@ -64,7 +64,7 @@
                     <label asp-for="AnimalSubtype.AnimalType.Name"></label>
                 </div>
                 <div class="col-8">
-                    <select asp-for="AnimalSubtype.AnimalType.Name" asp-items="ViewBag.AnimalTypLis as SelectList" class="form-select option">
+                    <select id="type" name="type" asp-for="AnimalSubtype.AnimalType.Name" asp-items="ViewBag.AnimalTypLis as SelectList" class="form-select option" onchange = "javascript: GetSubType(this.value);">
                     </select>
                 </div>
             </div>
@@ -74,14 +74,13 @@
                     <label asp-for="AnimalSubtype.Name"></label>
                 </div>
                 <div class="col-8">
-                    <select asp-for="AnimalSubtype.Name" asp-items="ViewBag.AnimalSubTypLis as SelectList" class="form-select option">
+                    <select id="subtype" name="subtype" asp-for="AnimalSubtype.Name" asp-items="ViewBag.AnimalSubTypLis as SelectList" class="form-select option">
                     </select>
                 </div>
             </div>
             <br />
-
             <div>
-                <input type="hidden" asp-for="UserId" value="@user.Id"/>
+                <input type="hidden" asp-for="UserId" value="@user.Id" />
             </div>
 
             <div class="form-group row">
@@ -97,4 +96,32 @@
         </div>
     </div>
 </form>
+
+
+<script language="javascript" type="text/javascript">
+        function GetSubType(_idType) {
+            var procemessage = "<option value='0'> Please wait...</option>";
+            $("#subtype").html(procemessage).show();
+            var url = "/User/Pets/GetTypeOfSubtype/";
+
+            $.ajax({
+                url: url,
+                data: { idType: _idType },
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    var markup = "<option value='0'>Select SubType</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        //console.log(data[x])
+                        markup += "<option value=" + data[x].value + ">" + data[x].text + "</option>";
+                    }
+                    $("#subtype").html(markup).show();
+                },
+                error: function (reponse) {
+                    alert("error : " + reponse);
+                }
+            });
+
+        }
+</script>
 

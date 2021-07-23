@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace AnimalMeetAPI.Models.Dtos
         public byte[] Image { get; set; }
         [Required]
         public int Age { get; set; }
+        //public enum SexType { Male, Female }
         [Required]
         public SexType Sex { get; set; }
 

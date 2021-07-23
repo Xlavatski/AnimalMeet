@@ -8,5 +8,6 @@ namespace AnimalMeetWeb.Repository.IRepository
 {
     public interface IAnimalSubTypeRepository : IRepository<AnimalSubType>
     {
+        Task<IEnumerable<AnimalSubType>> GetAllSubTypesOfTypeAsync(string url, int? Id, string token = "");
     }
 }

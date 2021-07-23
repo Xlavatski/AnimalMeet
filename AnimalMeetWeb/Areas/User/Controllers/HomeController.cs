@@ -1,8 +1,10 @@
 ﻿using AnimalMeetWeb.Models;
 using AnimalMeetWeb.Models.ViewModel;
 using AnimalMeetWeb.Repository.IRepository;
+using AnimalMeetWeb.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,15 +25,23 @@ namespace AnimalMeetWeb.Areas.User
         private readonly IAccountRepository _repoAcco;
         private readonly ICityRepository _cityRepository;
 
-        public HomeController(ILogger<HomeController> logger, IAccountRepository repoAcco, ICityRepository cityRepository)
+        private readonly IPetsRepository _petsRepository;
+        private readonly IUserService _userService;
+
+        public HomeController(ILogger<HomeController> logger, IAccountRepository repoAcco, ICityRepository cityRepository, IPetsRepository petsRepository, IUserService userService)
         {
             _logger = logger;
             _repoAcco = repoAcco;
             _cityRepository = cityRepository;
+            _petsRepository = petsRepository;
+            _userService = userService;
         }
 
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
+            ////int idUser = _userService.Id;
+            //IEnumerable<Pets> PetsList = await _petsRepository.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
             return View();
         }
 

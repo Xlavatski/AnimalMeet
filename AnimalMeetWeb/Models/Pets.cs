@@ -26,5 +26,6 @@ namespace AnimalMeetWeb.Models
         [Required]
         public int? AnimalSubtypeId { get; set; }
         public AnimalSubtype AnimalSubtype { get; set; }
+
     }
 }
