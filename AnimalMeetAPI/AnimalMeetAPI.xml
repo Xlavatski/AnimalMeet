@@ -30,7 +30,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:AnimalMeetAPI.Controllers.AuthUserController.GetAnimalSubType(System.Int32)">
+        <member name="M:AnimalMeetAPI.Controllers.AuthUserController.GetUser(System.Int32)">
             <summary>
             Get individual user.
             </summary>

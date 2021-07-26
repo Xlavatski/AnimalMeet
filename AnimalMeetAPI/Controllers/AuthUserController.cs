@@ -78,10 +78,10 @@ namespace AnimalMeetAPI.Controllers
         [ProducesResponseType(200, Type = typeof(ApplicationUserDto))]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
-        public IActionResult GetAnimalSubType(int id)
+        public IActionResult GetUser(int id)
         {
             var obj = _userRepository.GetUser(id);
-            if (obj == null) 
+            if (obj == null)
             {
                 return NotFound();
             }

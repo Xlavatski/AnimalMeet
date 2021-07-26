@@ -40,8 +40,8 @@ namespace AnimalMeetWeb.Areas.User
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            ////int idUser = _userService.Id;
-            //IEnumerable<Pets> PetsList = await _petsRepository.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
+            int idUser = _userService.Id;
+            IEnumerable<Pets> PetsList = await _petsRepository.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
             return View();
         }
 
