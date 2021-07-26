@@ -99,11 +99,12 @@ namespace AnimalMeetAPI.Controllers
             var objDto = new List<PetsDto>();
             foreach (var obj in objList)
             {
-                string test = obj.Sex.ToString();
-                int test1 = (int)obj.Sex;
-                Pets.SexType Sex = (Pets.SexType)Enum.GetValues(typeof(Pets.SexType)).GetValue(test1);
+                //string test = obj.Sex.ToString();
+                //int test1 = (int)obj.Sex;
 
-                Pets.SexType foo = (Pets.SexType)Enum.ToObject(typeof(Pets.SexType), test1);
+                //Pets.SexType Sex = (Pets.SexType)Enum.GetValues(typeof(Pets.SexType)).GetValue(test1);
+
+                //Pets.SexType foo = (Pets.SexType)Enum.ToObject(typeof(Pets.SexType), test1);
 
                 objDto.Add(_mapper.Map<PetsDto>(obj));
             }

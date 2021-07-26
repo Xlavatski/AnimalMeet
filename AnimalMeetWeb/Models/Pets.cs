@@ -18,7 +18,6 @@ namespace AnimalMeetWeb.Models
         public enum SexType { Male, Female }
         [Required]
         public SexType Sex { get; set; }
-
         public int UserId { get; set; }
         //hidden
         public ApplicationUser User { get; set; }

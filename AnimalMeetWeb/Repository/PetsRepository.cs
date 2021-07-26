@@ -20,7 +20,7 @@ namespace AnimalMeetWeb.Repository
             _clientFactory = clientFactory;
         }
 
-        public async Task<IEnumerable<Pets>> GetAllPetsOfUserAsync(string url, int? Id, string token = "")
+        public async Task<IEnumerable<PetsIndex>> GetAllPetsOfUserAsync(string url, int? Id, string token = "")
         {
             var request = new HttpRequestMessage(HttpMethod.Get, url+Id);
 
@@ -33,7 +33,7 @@ namespace AnimalMeetWeb.Repository
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IEnumerable<Pets>>(jsonString);
+                return JsonConvert.DeserializeObject<IEnumerable<PetsIndex>>(jsonString);
             }
             return null;
         }

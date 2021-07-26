@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AnimalMeetAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using static AnimalMeetAPI.Models.Pets;
 
-namespace AnimalMeetAPI.Models.Dtos
+namespace AnimalMeetWeb.Models
 {
-    public class PetsDto
+    public class PetsIndex
     {
         public int Id { get; set; }
         [Required]
@@ -18,7 +17,6 @@ namespace AnimalMeetAPI.Models.Dtos
         public int Age { get; set; }
         [Required]
         public string Sex { get; set; }
-
         public int UserId { get; set; }
         //hidden
         public ApplicationUser User { get; set; }
