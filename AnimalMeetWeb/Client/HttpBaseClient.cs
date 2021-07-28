@@ -11,13 +11,14 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class HttpBaseClient<T> : IRepository<T> where T : class
     {
         private readonly IHttpClientFactory _clientFactory;
-        public Repository(IHttpClientFactory clientFactory)
+        public HttpBaseClient(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
         }
+
         public async Task<bool> CreateAsync(string url, T objToCreate, string token = "")
         {
             var request = new HttpRequestMessage(HttpMethod.Post, url);

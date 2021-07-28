@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AnimalMeetAPI\AnimalMeetAPI.csproj" />
+    <ProjectReference Include="..\Animat.Dtos\Animat.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

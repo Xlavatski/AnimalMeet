@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Repository
 {
-    public class AnimalTypeRepository : Repository<AnimalType>, IAnimalTypeRepository
+    public class AnimalTypeRepository : HttpBaseClient<AnimalType>, IAnimalTypeRepository
     {
         private readonly IHttpClientFactory _clientFactory;
         public AnimalTypeRepository(IHttpClientFactory clientFactory): base(clientFactory)

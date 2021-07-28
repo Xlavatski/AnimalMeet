@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalMeetAPI", "AnimalMeetAPI\AnimalMeetAPI.csproj", "{90B8ADC7-B63A-4318-8F38-5ED3F8F8E143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalMeetWeb", "AnimalMeetWeb\AnimalMeetWeb.csproj", "{7D2E1760-AB7B-4B15-BDF0-B1EA83196F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalMeetWeb", "AnimalMeetWeb\AnimalMeetWeb.csproj", "{7D2E1760-AB7B-4B15-BDF0-B1EA83196F27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Dtos", "Animat.Dtos\Animat.Dtos.csproj", "{DA30C6E3-4DDD-4457-8ADF-7DCFEAF51C29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7D2E1760-AB7B-4B15-BDF0-B1EA83196F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D2E1760-AB7B-4B15-BDF0-B1EA83196F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D2E1760-AB7B-4B15-BDF0-B1EA83196F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA30C6E3-4DDD-4457-8ADF-7DCFEAF51C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA30C6E3-4DDD-4457-8ADF-7DCFEAF51C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA30C6E3-4DDD-4457-8ADF-7DCFEAF51C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA30C6E3-4DDD-4457-8ADF-7DCFEAF51C29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

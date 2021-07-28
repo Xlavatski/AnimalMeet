@@ -1,4 +1,4 @@
-﻿@model AnimalMeetWeb.Models.Pets
+﻿@model AnimalMeetWeb.Models.ViewModel.PetsVM
 @inject AnimalMeetWeb.Services.IUserService user;
 @{
     var title = "Create Pets";
@@ -33,7 +33,7 @@
                     <label asp-for="Image"></label>
                 </div>
                 <div class="col-8">
-                    <input type="file" asp-for="Image" id="projectImage" name="file" multiple class="form-control" />
+                    <input type="file" asp-for="Image" id="projectImage" multiple class="form-control" />
                 </div>
             </div>
             <br />
@@ -61,20 +61,20 @@
             <br />
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="AnimalSubtype.AnimalType.Name"></label>
+                    <label>Animal types</label>
                 </div>
                 <div class="col-8">
-                    <select id="type" name="type" asp-for="AnimalSubtype.AnimalType.Name" asp-items="ViewBag.AnimalTypLis as SelectList" class="form-select option" onchange = "javascript: GetSubType(this.value);">
+                    <select id="type" asp-for="@Model.AnimalTypeId" asp-items="ViewBag.AnimalTypes" class="form-select option" onchange = "javascript: GetSubType(this.value);">
                     </select>
                 </div>
             </div>
             <br />
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="AnimalSubtype.Name"></label>
+                    <label>AnimalSubTypes</label>
                 </div>
                 <div class="col-8">
-                    <select id="subtype" name="subtype" asp-for="AnimalSubtype.Name" asp-items="ViewBag.AnimalSubTypLis as SelectList" class="form-select option">
+                    <select id="subtype" asp-for="@Model.AnimalSubtypeId" asp-items="ViewBag.AnimalSubTypes" class="form-select option">
                     </select>
                 </div>
             </div>

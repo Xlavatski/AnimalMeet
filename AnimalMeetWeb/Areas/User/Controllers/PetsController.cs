@@ -38,38 +38,81 @@ namespace AnimalMeetWeb.Areas.User.Controllers
 
         public async Task<IActionResult> Upsert(int? id) 
         {
-            Pets objPets = new Pets();
             int? idUser = _userService.Id;
 
-            IEnumerable<PetsIndex> PetsList = await _petsRepo.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
-            //if (PetsList == )
-            //{
-            //    return View(objPets);
-            //}
+            //IEnumerable<PetsIndex> PetsList = await _petsRepo.GetAllPetsOfUserAsync(SD.PetsAPIPath + "GetPetsInUser/", idUser, HttpContext.Session.GetString("JWToken"));
+            ////if (PetsList == )
+            ////{
+            ////    return View(objPets);
+            ////}
 
+
+
+            //IEnumerable<AnimalType> AnimTypeList = await _animalTypeRepo.GetAllAsync(SD.AnimalTypeAPIPath, HttpContext.Session.GetString("JWToken"));
+
+            //ViewBag.AnimalTypLis = new SelectList(AnimTypeList, "Id", "Name");
+
+            //IEnumerable<AnimalSubType> AnimaSubtypeList = await _animalSubTypeRepo.GetAllAsync(SD.AnimalSubTypeAPIPath, HttpContext.Session.GetString("JWToken"));
+
+            //ViewBag.AnimalSubTypLis = new SelectList(AnimaSubtypeList, "Id", "Name");
 
             IEnumerable<AnimalType> AnimTypeList = await _animalTypeRepo.GetAllAsync(SD.AnimalTypeAPIPath, HttpContext.Session.GetString("JWToken"));
 
-            ViewBag.AnimalTypLis = new SelectList(AnimTypeList, "Id", "Name");
+            ViewData["AnimalTypes"] = new SelectList(AnimTypeList, "Id", "Name");
 
             IEnumerable<AnimalSubType> AnimaSubtypeList = await _animalSubTypeRepo.GetAllAsync(SD.AnimalSubTypeAPIPath, HttpContext.Session.GetString("JWToken"));
 
-            ViewBag.AnimalSubTypLis = new SelectList(AnimaSubtypeList, "Id", "Name");
+            ViewData["AnimalSubTypes"] = new SelectList(AnimaSubtypeList, "Id", "Name");
 
+            PetsVM objPetsVM = new();
 
-            if (id == null) 
+            if (id == null)
             {
-                return View(objPets);
+                return View(objPetsVM);
             }
 
-            objPets = await _petsRepo.GetAsync(SD.PetsAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
+            var dbPet = await _petsRepo.GetAsync(SD.PetsAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
 
-            if (objPets == null) 
+            if (dbPet == null)
             {
                 return NotFound();
             }
 
-            return View(objPets);
+            //koristi se automapper
+            objPetsVM.Id = dbPet.Id;
+            objPetsVM.Image = dbPet.Image;
+            objPetsVM.Name = dbPet.Name;
+            objPetsVM.AnimalTypeId = dbPet.AnimalSubtype?.AnimalTypeId;
+            objPetsVM.AnimalSubtypeId = dbPet.AnimalSubtypeId;
+            objPetsVM.Age = dbPet.Age;
+            objPetsVM.Sex = (int)dbPet.Sex;
+            objPetsVM.UserId = dbPet.UserId;
+
+            return View(objPetsVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(PetsVM objPets) 
+        {
+            if (ModelState.IsValid)
+            {
+                //Pretvaram PetsVM u PetDto
+
+                if (objPets.Id == 0)
+                {
+                    //await _petsRepo.CreateAsync(SD.PetsAPIPath, objPets, HttpContext.Session.GetString("JWToken"));
+                }
+                else
+                {
+                    //await _petsRepo.UpdateAsync(SD.PetsAPIPath + objPets.Id, objPets, HttpContext.Session.GetString("JWToken"));
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            else 
+            {
+                return View(objPets);
+            }
         }
 
         #region API region

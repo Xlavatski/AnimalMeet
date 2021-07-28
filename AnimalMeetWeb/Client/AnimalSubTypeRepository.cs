@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 
 namespace AnimalMeetWeb.Repository
 {
-    public class PetsRepository : Repository<Pets>, IPetsRepository
+    public class AnimalSubTypeRepository : HttpBaseClient<AnimalSubType>, IAnimalSubTypeRepository
     {
         private readonly IHttpClientFactory _clientFactory;
-        public PetsRepository(IHttpClientFactory clientFactory): base(clientFactory)
+        public AnimalSubTypeRepository(IHttpClientFactory clientFactory): base(clientFactory)
         {
             _clientFactory = clientFactory;
         }
 
-        public async Task<IEnumerable<PetsIndex>> GetAllPetsOfUserAsync(string url, int? Id, string token = "")
+        public async Task<IEnumerable<AnimalSubType>> GetAllSubTypesOfTypeAsync(string url, int? Id, string token = "")
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, url+Id);
+            var request = new HttpRequestMessage(HttpMethod.Get, url + Id);
 
             var client = _clientFactory.CreateClient();
             if (token != null && token.Length != 0)
@@ -33,7 +33,7 @@ namespace AnimalMeetWeb.Repository
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IEnumerable<PetsIndex>>(jsonString);
+                return JsonConvert.DeserializeObject<IEnumerable<AnimalSubType>>(jsonString);
             }
             return null;
         }
